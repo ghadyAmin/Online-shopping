@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
         if (user != null) {
             if(userRepo.findByEmail(user.getEmail())==null)
             {
-                if(patternMatches(user.getEmail())==false)
+              if(patternMatches(user.getEmail())==false)
                 {
                     throw new IllegalStateException("Enter a valid email");
                 }

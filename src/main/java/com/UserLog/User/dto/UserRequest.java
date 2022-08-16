@@ -1,15 +1,22 @@
 package com.UserLog.User.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Setter
 @Getter
-@AllArgsConstructor
+
+@NoArgsConstructor
+@ToString
 public class UserRequest {
-    private final String name;
-    private final String email;
-    private final String password;
+    private  String name;
+    private  String email;
+    private  String password;
+
+    UserRequest(String name,String email,String password)
+    {
+        this.name=name;
+        this.email=email;
+        this.password=password;
+    }
 
 }
