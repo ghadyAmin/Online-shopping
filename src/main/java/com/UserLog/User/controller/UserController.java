@@ -16,10 +16,9 @@ import com.UserLog.User.entity.User;
 import com.UserLog.User.service.UserService;
 
 
-
-@RestController
-@RequestMapping(path="user/v1")
 @CrossOrigin(origins = "*", maxAge = 3600)
+@RestController
+@RequestMapping(path="/user/v1")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -40,7 +39,7 @@ public class UserController {
     public ResponseEntity fetchUserByEmail(@RequestBody UserlogData user) {
         try {
             authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword())
+                      new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword())
             );
         } catch (Exception ex) {
             return ResponseEntity.badRequest().body("Invalid Email/password");
