@@ -29,7 +29,7 @@ public class UserController {
 
     //Save operation
     @PostMapping("/registration")
-    public UserDto addUser(@RequestBody UserRequest user) {
+    public ResponseEntity addUser(@RequestBody UserRequest user) {
        return userService.addUser(user);
     }
 

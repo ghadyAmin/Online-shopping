@@ -7,6 +7,7 @@ import com.UserLog.User.dto.UserDto;
 import com.UserLog.User.dto.UserRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -23,25 +24,25 @@ public class UserServiceImpl implements UserService {
 
     // saving user
     @Override
-    public UserDto addUser(UserRequest user) {
+    public ResponseEntity addUser(UserRequest user) {
         if (user != null) {
             if(userRepo.findByEmail(user.getEmail())==null)
             {
               if(patternMatches(user.getEmail())==false)
                 {
-                    throw new IllegalStateException("Enter a valid email");
+                    return ResponseEntity.badRequest().body("Enter a valid email");
                 }
                 if(user.getPassword().length()<8)
                 {
-                    throw new IllegalStateException("Enter an 8 character password");
+                    return ResponseEntity.badRequest().body("Enter an 8 character password");
                 }
                 User u=new User(user.getName(), user.getEmail(), user.getPassword());
                 userRepo.save(u);
-                UserDto userDto=new UserDto(user.getName(), user.getEmail());
-                return userDto;
+
+                return ResponseEntity.ok().body(new UserDto(user.getName(), user.getEmail()));
             }
             else {
-                throw new IllegalStateException("This user is already registered");
+              return ResponseEntity.badRequest().body("User is already registered");
             }
 
         }
