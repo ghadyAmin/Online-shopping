@@ -56,6 +56,14 @@ public class UserServiceImpl implements UserService {
                 .matches();
     }
 
+    //utility func. to return username in log in body response
+    @Override
+    public String getUsername(String email)
+    {
+        User u=userRepo.findByEmail(email);
+        return u.getFullName();
+    }
+
 
 
 //	@Override

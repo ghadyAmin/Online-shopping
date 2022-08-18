@@ -10,4 +10,5 @@ import lombok.Setter;
 public class UserlogDataResponse {
     private String token;
     private String email;
+    private String username;
 }

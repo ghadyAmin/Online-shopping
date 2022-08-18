@@ -44,7 +44,8 @@ public class UserController {
         } catch (Exception ex) {
             return ResponseEntity.badRequest().body("Invalid Email/password");
         }
-        return ResponseEntity.ok().body(new UserlogDataResponse(jwtUtil.generateToken(user.getEmail()), user.getEmail()));
+        String s=userService.getUsername(user.getEmail());
+        return ResponseEntity.ok().body(new UserlogDataResponse(jwtUtil.generateToken(user.getEmail()), user.getEmail(),s));
 
     }
 

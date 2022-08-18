@@ -30,5 +30,9 @@ public interface UserService {
     // Delete operation
     public void deleteUserById(Long id);
 
+    public String getUsername(String email);
+
+
+
 
 }
